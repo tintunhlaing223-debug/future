@@ -16,7 +16,7 @@
             <p class="text-gray-600 leading-relaxed font-medium">I am an aspiring MERN stack developer. Exploring the world of code!</p>
             <img src="my.jpg"
              class="w-32 h-32 object-cover rounded-full shadow-md border-4 border-indigo-200 mb-4" alt="Traco Picture">
-        </section>-
+        </section>
 
         <section class="bg-white p-8 rounded-2xl shadow-md w-full text-center flex flex-col items-center">
             <h2 class="text-2xl font-bold mb-3">My skills</h2>
@@ -27,16 +27,18 @@
             </ol>
         </section>
 
-        <section class="bg-white p-8 rounded-2xl shadow-md w-full text-center flex flex-col items-center">
-            <h2 class="text-2xl font-bold mb-4">Take action</h2>
-            <div class="flex-justify-center items-center w-full flex-wrap gap-4">
-                <button class="bg-[#00b894] text-white px-6 py-3 rounded-xl font-bold hover:bg-[#00947a] hover:-translate-y-1 transition duration-300 shadow-md" id="hireBtn">Hire Me</button>
-                <button class="bg-gray-200 text-gray-700 px-6 py-3 rounded-xl font-bold hover:bg-gray-300 transition duration-300">Projects</button>
-                <button class="bg-gray-200 text-gray-700 px-6 py-3 rounded-xl font-bold hover:bg-gray-300 transition duration-300">Contact</button>
+        <section class="bg-white p-8 rounded-2xl shadow-xl border-t-4 border-emerald-500 w-full max-w-md mt-6">
+            <h2 class="text-3xl font-extrabold mb-6 text-emerald-600 text-center tracking-wide">MY To Do List</h2>
+            <div class="flex gap-2 mb-6">
+                <input type="text" id="taskInput" placeholder="Add a new task..."
+                class="flex-1 px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-400 font-medium text-gray-700">
+                <button id="addBtn" class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold px-6 py-3 rounded-xl shadow-md active:scale-95 transition duration-200">ADD</button>
             </div>
+
+            <ul id="todoList" class="space-y-3 font-medium text-gray-700"></ul>
         </section>
 
-        <section class="bg-white p-8 rounded-2xl shdow-md w-full text-center flex flex-col items center">
+        <section class="bg-white p-8 rounded-2xl shadow-md w-full text-center flex flex-col items-center">
             <h2 class="text-2xl font-bold mb-4">Message me</h2>
             <form id="myForm" class="w-full max-w-sm flex flex-col gap-4">
                 <div class="flex flex-col text-left gap-1">
