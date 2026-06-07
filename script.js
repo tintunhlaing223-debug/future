@@ -1,40 +1,66 @@
-const taskInput = document.getElementById("taskInput");
-const addBtn = document.getElementById("addBtn");
-const todoList = document.getElementById("todoList");
+const taskInput = document.getElementById('taskInput');
+const addBtn = document.getElementById('addBtn');
+const deleteBtn = document.getElementById('deleteBtn');
+const showBtn = document.getElementById('showBtn');
+const todoList = document.getElementById('todoList');
+
+function loadTasks() {
+    let saveTasks = JSON.parse(localStorage.getItem('myTasks')) || [];
+    saveTasks.forEach(taskText => {
+        createTaskElement(taskText);
+    });
+}
+
+function saveTasks() {
+    let allTasks = todoList.querySelectorAll('li');
+    let taskArray = [];
+    allTasks.forEach(li => {
+        taskArray.push(li.textContent);
+    });
+    localStorage.setItem('myTasks',JSON.stringify(taskArray));
+}
+
+function createTaskElement(taskText) {
+    let li = document.createElement('li');
+    li.className = "bg-gray-50 p-3 rounded-xl border border-gray-200 shadow-sm";
+    li.textContent = taskText;
+    todoList.appendChild(li);
+}
 
 addBtn.onclick = function () {
     let taskText = taskInput.value.trim();
 
-    if (taskText == "") {
-        alert("Pleace write something to work.");
+    if (taskText === "") {
+        alert("Please write something.")
         return;
     }
 
-    let li = document.createElement("li");
-    li.className = "flex justify-between items-center bg-gray-50 p-3 rounded-xl border border-gray-200 shadow-sm animate-fade-in";
-
-    li.innerHTML = `
-    <span class= "text-gray-800 font-medium">${taskText}</span>
-    <button class="deleteBtn text-red-500 hover:text-red-700 font-bold bg-red-50 hover:bg-red-100 px-3 py-1 rounded-lg transition duration-200"> Delete </button>
-    `;
-
-    li.querySelector('.deleteBtn').onclick = function () {
-        li.remove();
-    }
-
-    todoList.appendChild(li);
-
+    createTaskElement(taskText);
+    saveTasks();
     taskInput.value = "";
 }
 
-const myForm = document.getElementById("myForm");
+deleteBtn.onclick = function () {
+    let lastTask = todoList.lastElementChild;
+    if (lastTask) {
+        todoList.removeChild(lastTask);
+        saveTasks();
+    } else {
+        alert("There have no anything.")
+    }
+};
 
-const emaillnput = document.getElementById("userEmail");
+showBtn.onclick = function () {
+    let allTasks = todoList.querySelectorAll('li');
+    if (allTasks.length === 0) {
+        alert("There have nothing to show.");
+        return;
+    }
+    let taskListString = "My to do list\n";
+    allTasks.forEach((li, index) => {
+        taskListString += `${index + 1}.${li.textContent}\n`;
+    });
+    alert(taskListString);
+};
 
-myForm.addEventListener('submit', function (event) {
-    event.preventDefault();
-
-    const currentEmail = emaillnput.value;
-
-    alert(' Traco ' + currentEmail + ' you get message.')
-});
+loadTasks();
